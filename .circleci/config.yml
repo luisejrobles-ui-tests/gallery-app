@@ -10,6 +10,10 @@ jobs:
     environment:
       JEST_JUNIT_OUTPUT_DIR: ./test-results/
     steps:
+      - run:
+          name: Configure git to use HTTPS
+          command: |
+            git config --global url."https://github.com/".insteadOf "git@github.com:"
       - checkout
       - node/install-packages:
           pkg-manager: yarn

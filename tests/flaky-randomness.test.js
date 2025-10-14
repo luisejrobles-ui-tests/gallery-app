@@ -168,11 +168,12 @@ describe('Flaky Randomness-Based Tests', () => {
   });
 
   // FLAKY TEST 17: Random delay simulation
-  test('should handle random delays (FLAKY: delay timing)', (done) => {
+  test('should handle random delays (FLAKY: delay timing)', () => {
+    jest.useFakeTimers();
+    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.6); // 0.6 -> 220ms delay
+
     let operationCompleted = false;
-    const startTime = Date.now();
-    
-    // Mock operation with random delay
+
     const mockRandomDelayOperation = () => {
       const delay = Math.random() * 200 + 100; // 100-300ms
       setTimeout(() => {
@@ -181,15 +182,13 @@ describe('Flaky Randomness-Based Tests', () => {
     };
 
     mockRandomDelayOperation();
-    
-    // Check completion at fixed time
-    setTimeout(() => {
-      const elapsedTime = Date.now() - startTime;
-      
-      expect(operationCompleted).toBe(true); // FLAKY: might not be completed yet
-      expect(elapsedTime).toBeLessThan(250); // FLAKY: delay might be longer
-      done();
-    }, 200); // Fixed 200ms check
+
+    // Advance past the deterministic delay
+    jest.advanceTimersByTime(221);
+    expect(operationCompleted).toBe(true);
+
+    randomSpy.mockRestore();
+    jest.useRealTimers();
   });
 
   // FLAKY TEST 18: Weighted random selection

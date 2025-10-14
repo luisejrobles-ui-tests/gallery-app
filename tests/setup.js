@@ -36,7 +36,10 @@ beforeEach(() => {
   
   // Reset window scroll position
   window.pageYOffset = 0;
-  
-  // Clear all mocks
+
+  // Clear storage and mocks
+  if (typeof localStorage !== 'undefined' && localStorage) {
+    localStorage.clear();
+  }
   jest.clearAllMocks();
 }); 

@@ -192,30 +192,40 @@ describe('Flaky Randomness-Based Tests', () => {
     }, 200); // Fixed 200ms check
   });
 
-  // FLAKY TEST 18: Weighted random selection
+  // FLAKY TEST 18: Weighted random selection (made deterministic)
   test('should respect weighted probabilities (FLAKY: weighted randomness)', () => {
     const weights = { common: 0.7, rare: 0.25, legendary: 0.05 };
     const results = { common: 0, rare: 0, legendary: 0 };
-    const iterations = 20;
+
+    // Deterministic sequence covering expected buckets: 14 common, 5 rare, 1 legendary
+    const sequence = [
+      0.8, 0.9, 0.7, 0.6, 0.31, // common x5
+      0.1, 0.2, 0.25, 0.15, 0.29, // rare x5
+      0.01, // legendary x1
+      0.35, 0.4, 0.5, 0.55, 0.6, 0.65, 0.85, 0.95, 0.99 // common x9
+    ];
+    const iterations = sequence.length;
     
-    // Mock weighted random selection
-    const mockWeightedSelect = () => {
-      const random = Math.random();
+    // Weighted selection driven by injected RNG
+    const mockWeightedSelect = (rng = Math.random) => {
+      const random = rng();
       if (random < weights.legendary) return 'legendary';
       if (random < weights.legendary + weights.rare) return 'rare';
       return 'common';
     };
 
-    // Run multiple selections
+    let idx = 0;
+    const rng = () => sequence[idx++];
+
+    // Run multiple selections deterministically
     for (let i = 0; i < iterations; i++) {
-      const result = mockWeightedSelect();
+      const result = mockWeightedSelect(rng);
       results[result]++;
     }
 
-    // These assertions assume specific distribution
-    expect(results.common).toBeGreaterThan(10); // FLAKY: might get unlucky
-    expect(results.rare).toBeGreaterThan(3); // FLAKY: might get no rare items
-    expect(results.legendary).toBe(1); // FLAKY: might get 0 or multiple legendary
-    expect(results.legendary).toBeGreaterThan(0); // FLAKY: might get no legendary items
+    // Assert exact, deterministic distribution
+    expect(results.common).toBe(14);
+    expect(results.rare).toBe(5);
+    expect(results.legendary).toBe(1);
   });
 });

@@ -154,37 +154,38 @@ describe('Flaky Timing-Based Tests', () => {
     }, 200); // Check at 200ms - often before 180ms debounce completes
   });
 
-  // FLAKY TEST 5: Promise resolution order
-  test('should resolve promises in expected order (FLAKY: promise timing)', async () => {
+  // TEST 5: Promise resolution order (made deterministic)
+  test('should resolve promises in expected order', async () => {
+    jest.useFakeTimers();
     const resolveOrder = [];
-    
-    // Create promises with overlapping random delays - more chaos
+
+    // Use fixed delays to ensure deterministic ordering: third < first < second
     const promise1 = new Promise(resolve => {
       setTimeout(() => {
         resolveOrder.push('first');
         resolve('first');
-      }, Math.random() * 100 + 50); // 50-150ms
+      }, 20);
     });
-    
+
     const promise2 = new Promise(resolve => {
       setTimeout(() => {
         resolveOrder.push('second');
         resolve('second');
-      }, Math.random() * 120 + 40); // 40-160ms
+      }, 30);
     });
-    
+
     const promise3 = new Promise(resolve => {
       setTimeout(() => {
         resolveOrder.push('third');
         resolve('third');
-      }, Math.random() * 80 + 30); // 30-110ms
+      }, 10);
     });
 
-    await Promise.all([promise1, promise2, promise3]);
-    
-    // These assertions assume a specific order, but with overlapping ranges, order is very random
-    expect(resolveOrder[0]).toBe('third'); // FLAKY: ~67% chance of being wrong
-    expect(resolveOrder[1]).toBe('first'); // FLAKY: ~67% chance of being wrong  
-    expect(resolveOrder[2]).toBe('second'); // FLAKY: ~67% chance of being wrong
+    const all = Promise.all([promise1, promise2, promise3]);
+    jest.advanceTimersByTime(100);
+    await all;
+
+    expect(resolveOrder).toEqual(['third', 'first', 'second']);
+    jest.useRealTimers();
   });
 });

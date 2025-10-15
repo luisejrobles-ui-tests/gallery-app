@@ -192,30 +192,26 @@ describe('Flaky Randomness-Based Tests', () => {
     }, 200); // Fixed 200ms check
   });
 
-  // FLAKY TEST 18: Weighted random selection
-  test('should respect weighted probabilities (FLAKY: weighted randomness)', () => {
+  // TEST 18: Weighted random selection (deterministic mapping)
+  test('should respect weighted probabilities (deterministic mapping)', () => {
     const weights = { common: 0.7, rare: 0.25, legendary: 0.05 };
-    const results = { common: 0, rare: 0, legendary: 0 };
-    const iterations = 20;
-    
-    // Mock weighted random selection
-    const mockWeightedSelect = () => {
-      const random = Math.random();
-      if (random < weights.legendary) return 'legendary';
-      if (random < weights.legendary + weights.rare) return 'rare';
+
+    // Deterministic mapping: given r, returns bucket by weight thresholds
+    const mockWeightedSelect = (r) => {
+      if (r < weights.legendary) return 'legendary';
+      if (r < weights.legendary + weights.rare) return 'rare';
       return 'common';
     };
 
-    // Run multiple selections
-    for (let i = 0; i < iterations; i++) {
-      const result = mockWeightedSelect();
-      results[result]++;
-    }
+    // Boundary and representative checks
+    expect(mockWeightedSelect(0.00)).toBe('legendary'); // < 0.05
+    expect(mockWeightedSelect(0.0499)).toBe('legendary'); // just below boundary
 
-    // These assertions assume specific distribution
-    expect(results.common).toBeGreaterThan(10); // FLAKY: might get unlucky
-    expect(results.rare).toBeGreaterThan(3); // FLAKY: might get no rare items
-    expect(results.legendary).toBe(1); // FLAKY: might get 0 or multiple legendary
-    expect(results.legendary).toBeGreaterThan(0); // FLAKY: might get no legendary items
+    expect(mockWeightedSelect(0.05)).toBe('rare'); // boundary inclusive to rare
+    expect(mockWeightedSelect(0.10)).toBe('rare'); // within rare band
+    expect(mockWeightedSelect(0.2999)).toBe('rare'); // just below common boundary
+
+    expect(mockWeightedSelect(0.30)).toBe('common'); // boundary inclusive to common
+    expect(mockWeightedSelect(0.95)).toBe('common'); // high r always common
   });
 });

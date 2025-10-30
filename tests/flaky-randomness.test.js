@@ -211,25 +211,27 @@ describe('Flaky Randomness-Based Tests', () => {
   });
 
   // TEST 18: Weighted random selection driven by deterministic sequence
-  test('should respect weighted probabilities via deterministic sequence', () => {
+  test('should respect weighted probabilities (FLAKY: weighted randomness)', () => {
+    // Sequence with 1 legendary (<0.05), 6 rare (0.05-0.30), 13 common (>=0.30)
+    const seq = [
+      0.9, 0.8, 0.6, 0.3, 0.2, 0.01, 0.75, 0.26, 0.55, 0.4,
+      0.15, 0.05, 0.95, 0.7, 0.85, 0.32, 0.22, 0.12, 0.88, 0.62
+    ];
+
+    // Mock Math.random BEFORE defining the function that uses it
+    const randSpy = jest.spyOn(Math, 'random');
+    seq.forEach(v => randSpy.mockReturnValueOnce(v));
+
     const weights = { common: 0.7, rare: 0.25, legendary: 0.05 };
     const results = { common: 0, rare: 0, legendary: 0 };
     const iterations = 20;
-    
+
     const mockWeightedSelect = () => {
       const random = Math.random();
       if (random < weights.legendary) return 'legendary';
       if (random < weights.legendary + weights.rare) return 'rare';
       return 'common';
     };
-
-    // Sequence with 1 legendary (<0.05), 5 rare (<0.30), 14 common
-    const seq = [
-      0.9, 0.8, 0.6, 0.3, 0.2, 0.01, 0.75, 0.26, 0.55, 0.4,
-      0.15, 0.05, 0.95, 0.7, 0.85, 0.32, 0.22, 0.12, 0.88, 0.62
-    ];
-    const randSpy = jest.spyOn(Math, 'random');
-    seq.forEach(v => randSpy.mockReturnValueOnce(v));
 
     for (let i = 0; i < iterations; i++) {
       const result = mockWeightedSelect();

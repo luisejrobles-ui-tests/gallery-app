@@ -188,7 +188,10 @@ describe('Flaky Randomness-Based Tests', () => {
 
     let operationCompleted = false;
     const startTime = Date.now();
-    
+
+    // Mock Math.random to return 0.5, giving delay of 0.5 * 200 + 100 = 200ms
+    const randSpy = jest.spyOn(Math, 'random').mockReturnValue(0.5);
+
     const mockRandomDelayOperation = () => {
       const delay = Math.random() * 200 + 100; // 100-300ms
       setTimeout(() => {
@@ -197,12 +200,13 @@ describe('Flaky Randomness-Based Tests', () => {
     };
 
     mockRandomDelayOperation();
-    
+
     setTimeout(() => {
       const elapsedTime = Date.now() - startTime;
-      
+
       expect(operationCompleted).toBe(true);
       expect(elapsedTime).toBeGreaterThanOrEqual(100);
+      randSpy.mockRestore();
       jest.useRealTimers();
       done();
     }, 300);

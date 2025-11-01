@@ -16,14 +16,28 @@ describe('Flaky Memory and State Pollution Tests', () => {
         <div class="event-target"></div>
       </div>
     `;
-    
-    // Intentionally NOT resetting shared state to create MORE pollution
-    // globalCounter = 0;  // COMMENTED OUT - causes state pollution
-    // sharedCache = {};   // COMMENTED OUT - causes state pollution
-    
-    // Actually increment counter to guarantee pollution
-    globalCounter += Math.floor(Math.random() * 5) + 1; // Add 1-5 to counter each time
-    sharedCache[`pollution-${Date.now()}`] = 'polluted data'; // Add random cache entries
+
+    // Reset shared state and environment deterministically
+    globalCounter = 0;
+    sharedCache = {};
+    eventListeners = [];
+    localStorage.clear();
+    delete window.testGlobal;
+    delete window.userPreferences;
+    delete global.debugMode;
+  });
+
+  afterEach(() => {
+    for (const { element, type, handler } of eventListeners) {
+      element.removeEventListener(type, handler);
+    }
+    eventListeners = [];
+
+    // Ensure no timers leak across tests (only if fake timers are active)
+    try { jest.runOnlyPendingTimers(); } catch {}
+    try { jest.clearAllTimers(); } catch {}
+    jest.useRealTimers();
+    jest.restoreAllMocks();
   });
 
   // FLAKY TEST 25: Shared counter state pollution
@@ -131,32 +145,19 @@ describe('Flaky Memory and State Pollution Tests', () => {
   });
 
   // FLAKY TEST 30: Timer pollution
-  test('should handle timers correctly (FLAKY: timer pollution)', (done) => {
+  test('should handle timers correctly (FLAKY: timer pollution)', () => {
+    jest.useFakeTimers();
     let timerCount = 0;
-    
-    // Mock timer that might not be cleaned up
-    const mockStartTimer = () => {
-      const interval = setInterval(() => {
-        timerCount++;
-      }, 50);
-      
-      // Store interval but don't always clean it up
-      if (Math.random() > 0.5) {
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 200);
-      }
-      // 50% chance timer keeps running - causes pollution
-    };
 
-    mockStartTimer();
-    
-    setTimeout(() => {
-      // Timer count depends on whether previous test timers are still running
-      expect(timerCount).toBe(4); // FLAKY: might be higher if previous timers still running
-      expect(timerCount).toBeGreaterThan(0);
-      done();
-    }, 250);
+    const interval = setInterval(() => {
+      timerCount++;
+    }, 50);
+
+    // Advance deterministically and then clear
+    jest.advanceTimersByTime(250);
+    clearInterval(interval);
+
+    expect(timerCount).toBe(5);
   });
 
   // FLAKY TEST 31: Module state pollution
@@ -245,6 +246,10 @@ describe('Flaky Memory and State Pollution Tests', () => {
 
   // FLAKY TEST 34: Async state pollution
   test('should handle async state correctly (FLAKY: async pollution)', async () => {
+    jest.useFakeTimers();
+    jest.spyOn(Math, 'random').mockReturnValue(0.3);
+    jest.setSystemTime(new Date('2020-01-01T00:00:00Z'));
+
     let asyncResults = [];
     
     // Mock async operation that adds to shared array
@@ -253,8 +258,8 @@ describe('Flaky Memory and State Pollution Tests', () => {
       asyncResults.push(`result-${id}`);
     };
 
-    // Test assumes empty results array
-    expect(asyncResults).toHaveLength(0); // FLAKY: might have results from previous async tests
+    // Start empty and deterministic
+    expect(asyncResults).toHaveLength(0);
     
     // Start async operations
     const promises = [
@@ -262,10 +267,12 @@ describe('Flaky Memory and State Pollution Tests', () => {
       mockAsyncOperation(2),
       mockAsyncOperation(3)
     ];
+
+    const all = Promise.all(promises);
+    jest.runAllTimers();
+    await all;
     
-    await Promise.all(promises);
-    
-    expect(asyncResults).toHaveLength(3); // FLAKY: might have more if previous tests added results
+    expect(asyncResults).toHaveLength(3);
     expect(asyncResults).toContain('result-1');
     expect(asyncResults).toContain('result-2');
     expect(asyncResults).toContain('result-3');

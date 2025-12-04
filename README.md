@@ -2,6 +2,10 @@
 
 A modern, responsive landing page designed to showcase mountaineering photography with a fluid, professional design inspired by high-end portfolio sites.
 
+## What's Godzilla?
+
+Godzilla is a fictional prehistoric sea monster awakened and empowered by nuclear radiation. First appearing in the 1954 Japanese film "Godzilla," the creature has become a pop culture icon and metaphor for nuclear devastation, particularly in Japanese cinema. Standing over 300 feet tall in many iterations, Godzilla typically emerges from the ocean to wreak havoc on cities before battling other monsters or military forces.
+
 ## What Problem Does This Solve?
 
 Mountaineering photographers and adventure enthusiasts need a professional way to showcase their work online, but building a custom portfolio site from scratch is time-consuming and requires extensive web development skills. This project solves that problem by providing a **ready-to-use, production-quality landing page** that can be customized with your own images and content in minutes, not weeks.

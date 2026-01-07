@@ -414,10 +414,15 @@
 <a name='L349'></a><a href='#L349'>349</a>
 <a name='L350'></a><a href='#L350'>350</a>
 <a name='L351'></a><a href='#L351'>351</a>
-<a name='L352'></a><a href='#L352'>352</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L352'></a><a href='#L352'>352</a>
+<a name='L353'></a><a href='#L353'>353</a>
+<a name='L354'></a><a href='#L354'>354</a>
+<a name='L355'></a><a href='#L355'>355</a>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a>
+<a name='L358'></a><a href='#L358'>358</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -551,6 +556,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -575,6 +582,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -586,6 +594,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -676,6 +686,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -763,275 +774,281 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// DOM Content Loaded
-<span class="cstat-no" title="statement not covered" >document.addEventListener('DOMContentLoaded', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-    
-    // Navigation functionality
-    const hamburger = <span class="cstat-no" title="statement not covered" >document.querySelector('.hamburger');</span>
-    const navMenu = <span class="cstat-no" title="statement not covered" >document.querySelector('.nav-menu');</span>
-    const navLinks = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.nav-link');</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// DOM Content Loaded
+<span class="cstat-no" title="statement not covered" >document.addEventListener("DOMContentLoaded", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+  // Navigation functionality
+  const hamburger = <span class="cstat-no" title="statement not covered" >document.querySelector(".hamburger");</span>
+  const navMenu = <span class="cstat-no" title="statement not covered" >document.querySelector(".nav-menu");</span>
+  const navLinks = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(".nav-link");</span>
 &nbsp;
-    // Mobile menu toggle
-<span class="cstat-no" title="statement not covered" >    hamburger.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-<span class="cstat-no" title="statement not covered" >        hamburger.classList.toggle('active');</span>
-<span class="cstat-no" title="statement not covered" >        navMenu.classList.toggle('active');</span>
+  // Mobile menu toggle
+<span class="cstat-no" title="statement not covered" >  hamburger.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >    hamburger.classList.toggle("active");</span>
+<span class="cstat-no" title="statement not covered" >    navMenu.classList.toggle("active");</span>
+  });
+&nbsp;
+  // Close mobile menu when clicking on links
+<span class="cstat-no" title="statement not covered" >  navLinks.forEach(<span class="fstat-no" title="function not covered" >(l</span>ink) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    link.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >      hamburger.classList.remove("active");</span>
+<span class="cstat-no" title="statement not covered" >      navMenu.classList.remove("active");</span>
     });
+  });
 &nbsp;
-    // Close mobile menu when clicking on links
-<span class="cstat-no" title="statement not covered" >    navLinks.forEach(<span class="fstat-no" title="function not covered" >li</span>nk =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        link.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-<span class="cstat-no" title="statement not covered" >            hamburger.classList.remove('active');</span>
-<span class="cstat-no" title="statement not covered" >            navMenu.classList.remove('active');</span>
-        });
-    });
-&nbsp;
-    // Navbar scroll effect
-<span class="cstat-no" title="statement not covered" >    window.addEventListener('scroll', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-        const navbar = <span class="cstat-no" title="statement not covered" >document.querySelector('.navbar');</span>
-<span class="cstat-no" title="statement not covered" >        if (window.scrollY &gt; 100) {</span>
-<span class="cstat-no" title="statement not covered" >            navbar.style.background = 'rgba(255, 255, 255, 0.98)';</span>
-<span class="cstat-no" title="statement not covered" >            navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';</span>
-        } else {
-<span class="cstat-no" title="statement not covered" >            navbar.style.background = 'rgba(255, 255, 255, 0.95)';</span>
-<span class="cstat-no" title="statement not covered" >            navbar.style.boxShadow = 'none';</span>
-        }
-    });
-&nbsp;
-    // Gallery filtering
-    const filterButtons = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.filter-btn');</span>
-    const galleryItems = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.gallery-item');</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    filterButtons.forEach(<span class="fstat-no" title="function not covered" >bu</span>tton =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        button.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-            // Remove active class from all buttons
-<span class="cstat-no" title="statement not covered" >            filterButtons.forEach(<span class="fstat-no" title="function not covered" >bt</span>n =&gt; <span class="cstat-no" title="statement not covered" >btn.classList.remove('active'))</span>;</span>
-            // Add active class to clicked button
-<span class="cstat-no" title="statement not covered" >            this.classList.add('active');</span>
-&nbsp;
-            const filterValue = <span class="cstat-no" title="statement not covered" >this.getAttribute('data-filter');</span>
-            
-<span class="cstat-no" title="statement not covered" >            galleryItems.forEach(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
-                const itemCategory = <span class="cstat-no" title="statement not covered" >item.getAttribute('data-category');</span>
-                
-<span class="cstat-no" title="statement not covered" >                if (filterValue === 'all' || itemCategory === filterValue) {</span>
-<span class="cstat-no" title="statement not covered" >                    item.classList.remove('hide');</span>
-<span class="cstat-no" title="statement not covered" >                    item.classList.add('show');</span>
-<span class="cstat-no" title="statement not covered" >                    item.style.display = 'block';</span>
-                } else {
-<span class="cstat-no" title="statement not covered" >                    item.classList.remove('show');</span>
-<span class="cstat-no" title="statement not covered" >                    item.classList.add('hide');</span>
-<span class="cstat-no" title="statement not covered" >                    setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                        item.style.display = 'none';</span>
-                    }, 300);
-                }
-            });
-        });
-    });
-&nbsp;
-    // Smooth scrolling for navigation links
-<span class="cstat-no" title="statement not covered" >    document.querySelectorAll('a[href^="#"]').forEach(<span class="fstat-no" title="function not covered" >an</span>chor =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        anchor.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction (e) {</span>
-<span class="cstat-no" title="statement not covered" >            e.preventDefault();</span>
-            const target = <span class="cstat-no" title="statement not covered" >document.querySelector(this.getAttribute('href'));</span>
-<span class="cstat-no" title="statement not covered" >            if (target) {</span>
-                const offsetTop = <span class="cstat-no" title="statement not covered" >target.offsetTop - 80;</span> // Account for fixed navbar
-<span class="cstat-no" title="statement not covered" >                window.scrollTo({</span>
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-&nbsp;
-    // Form submission
-    const contactForm = <span class="cstat-no" title="statement not covered" >document.querySelector('.contact-form');</span>
-<span class="cstat-no" title="statement not covered" >    if (contactForm) {</span>
-<span class="cstat-no" title="statement not covered" >        contactForm.addEventListener('submit', <span class="fstat-no" title="function not covered" >fu</span>nction(e) {</span>
-<span class="cstat-no" title="statement not covered" >            e.preventDefault();</span>
-            
-            // Get form data
-            const formData = <span class="cstat-no" title="statement not covered" >new FormData(this);</span>
-            const formObject = <span class="cstat-no" title="statement not covered" >{};</span>
-<span class="cstat-no" title="statement not covered" >            formData.forEach(<span class="fstat-no" title="function not covered" >(v</span>alue, key) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                formObject[key] = value;</span>
-            });
-&nbsp;
-            // Simulate form submission
-            const submitBtn = <span class="cstat-no" title="statement not covered" >this.querySelector('.submit-btn');</span>
-            const originalText = <span class="cstat-no" title="statement not covered" >submitBtn.textContent;</span>
-            
-<span class="cstat-no" title="statement not covered" >            submitBtn.textContent = 'Sending...';</span>
-<span class="cstat-no" title="statement not covered" >            submitBtn.disabled = true;</span>
-&nbsp;
-            // Simulate API call
-<span class="cstat-no" title="statement not covered" >            setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                alert('Thank you for your message! I\'ll get back to you soon.');</span>
-<span class="cstat-no" title="statement not covered" >                this.reset();</span>
-<span class="cstat-no" title="statement not covered" >                submitBtn.textContent = originalText;</span>
-<span class="cstat-no" title="statement not covered" >                submitBtn.disabled = false;</span>
-            }, 2000);
-        });
+  // Navbar scroll effect
+<span class="cstat-no" title="statement not covered" >  window.addEventListener("scroll", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+    const navbar = <span class="cstat-no" title="statement not covered" >document.querySelector(".navbar");</span>
+<span class="cstat-no" title="statement not covered" >    if (window.scrollY &gt; 100) {</span>
+<span class="cstat-no" title="statement not covered" >      navbar.style.background = "rgba(255, 255, 255, 0.98)";</span>
+<span class="cstat-no" title="statement not covered" >      navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      navbar.style.background = "rgba(255, 255, 255, 0.95)";</span>
+<span class="cstat-no" title="statement not covered" >      navbar.style.boxShadow = "none";</span>
     }
+  });
 &nbsp;
-    // Parallax effect for hero section
-<span class="cstat-no" title="statement not covered" >    window.addEventListener('scroll', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-        const scrolled = <span class="cstat-no" title="statement not covered" >window.pageYOffset;</span>
-        const hero = <span class="cstat-no" title="statement not covered" >document.querySelector('.hero');</span>
-<span class="cstat-no" title="statement not covered" >        if (hero) {</span>
-            const rate = <span class="cstat-no" title="statement not covered" >scrolled * -0.5;</span>
-<span class="cstat-no" title="statement not covered" >            hero.style.transform = `translateY(${rate}px)`;</span>
+  // Gallery filtering
+  const filterButtons = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(".filter-btn");</span>
+  const galleryItems = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(".gallery-item");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  filterButtons.forEach(<span class="fstat-no" title="function not covered" >(b</span>utton) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    button.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+      // Remove active class from all buttons
+<span class="cstat-no" title="statement not covered" >      filterButtons.forEach(<span class="fstat-no" title="function not covered" >(b</span>tn) =&gt; <span class="cstat-no" title="statement not covered" >btn.classList.remove("active"))</span>;</span>
+      // Add active class to clicked button
+<span class="cstat-no" title="statement not covered" >      this.classList.add("active");</span>
+&nbsp;
+      const filterValue = <span class="cstat-no" title="statement not covered" >this.getAttribute("data-filter");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      galleryItems.forEach(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {</span>
+        const itemCategory = <span class="cstat-no" title="statement not covered" >item.getAttribute("data-category");</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (filterValue === "all" || itemCategory === filterValue) {</span>
+<span class="cstat-no" title="statement not covered" >          item.classList.remove("hide");</span>
+<span class="cstat-no" title="statement not covered" >          item.classList.add("show");</span>
+<span class="cstat-no" title="statement not covered" >          item.style.display = "block";</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          item.classList.remove("show");</span>
+<span class="cstat-no" title="statement not covered" >          item.classList.add("hide");</span>
+<span class="cstat-no" title="statement not covered" >          setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            item.style.display = "none";</span>
+          }, 300);
         }
+      });
     });
+  });
 &nbsp;
-    // Intersection Observer for animations
-    const observerOptions = <span class="cstat-no" title="statement not covered" >{</span>
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-&nbsp;
-    const observer = <span class="cstat-no" title="statement not covered" >new IntersectionObserver(<span class="fstat-no" title="function not covered" >fu</span>nction(entries) {</span>
-<span class="cstat-no" title="statement not covered" >        entries.forEach(<span class="fstat-no" title="function not covered" >en</span>try =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (entry.isIntersecting) {</span>
-<span class="cstat-no" title="statement not covered" >                entry.target.style.opacity = '1';</span>
-<span class="cstat-no" title="statement not covered" >                entry.target.style.transform = 'translateY(0)';</span>
-            }
+  // Smooth scrolling for navigation links
+<span class="cstat-no" title="statement not covered" >  document.querySelectorAll('a[href^="#"]').forEach(<span class="fstat-no" title="function not covered" >(a</span>nchor) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    anchor.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction (e) {</span>
+<span class="cstat-no" title="statement not covered" >      e.preventDefault();</span>
+      const target = <span class="cstat-no" title="statement not covered" >document.querySelector(this.getAttribute("href"));</span>
+<span class="cstat-no" title="statement not covered" >      if (target) {</span>
+        const offsetTop = <span class="cstat-no" title="statement not covered" >target.offsetTop - 80;</span> // Account for fixed navbar
+<span class="cstat-no" title="statement not covered" >        window.scrollTo({</span>
+          top: offsetTop,
+          behavior: "smooth",
         });
-    }, observerOptions);
-&nbsp;
-    // Observe elements for scroll animations
-    const animateElements = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.featured-item, .gallery-item, .about-content, .contact-content');</span>
-<span class="cstat-no" title="statement not covered" >    animateElements.forEach(<span class="fstat-no" title="function not covered" >el</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        el.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >        el.style.transform = 'translateY(50px)';</span>
-<span class="cstat-no" title="statement not covered" >        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';</span>
-<span class="cstat-no" title="statement not covered" >        observer.observe(el);</span>
+      }
     });
+  });
 &nbsp;
-    // Counter animation for stats
-    const stats = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.stat-number');</span>
-    const countUp = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>lement, target) =&gt; {</span>
-        let current = <span class="cstat-no" title="statement not covered" >0;</span>
-        const increment = <span class="cstat-no" title="statement not covered" >target / 100;</span>
-        const timer = <span class="cstat-no" title="statement not covered" >setInterval(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            current += increment;</span>
-<span class="cstat-no" title="statement not covered" >            if (current &gt;= target) {</span>
-<span class="cstat-no" title="statement not covered" >                element.textContent = target;</span>
-<span class="cstat-no" title="statement not covered" >                clearInterval(timer);</span>
-            } else {
-<span class="cstat-no" title="statement not covered" >                element.textContent = Math.floor(current);</span>
-            }
-        }, 20);
-    };
+  // Form submission
+  const contactForm = <span class="cstat-no" title="statement not covered" >document.querySelector(".contact-form");</span>
+<span class="cstat-no" title="statement not covered" >  if (contactForm) {</span>
+<span class="cstat-no" title="statement not covered" >    contactForm.addEventListener("submit", <span class="fstat-no" title="function not covered" >fu</span>nction (e) {</span>
+<span class="cstat-no" title="statement not covered" >      e.preventDefault();</span>
 &nbsp;
-    const statsObserver = <span class="cstat-no" title="statement not covered" >new IntersectionObserver(<span class="fstat-no" title="function not covered" >fu</span>nction(entries) {</span>
-<span class="cstat-no" title="statement not covered" >        entries.forEach(<span class="fstat-no" title="function not covered" >en</span>try =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (entry.isIntersecting) {</span>
-                const target = <span class="cstat-no" title="statement not covered" >entry.target;</span>
-                const finalValue = <span class="cstat-no" title="statement not covered" >target.textContent;</span>
-                const numericValue = <span class="cstat-no" title="statement not covered" >parseInt(finalValue.replace(/\D/g, ''));</span>
-<span class="cstat-no" title="statement not covered" >                countUp(target, numericValue);</span>
-<span class="cstat-no" title="statement not covered" >                statsObserver.unobserve(target);</span>
-            }
-        });
-    }, { threshold: 0.5 });
+      // Get form data
+      const formData = <span class="cstat-no" title="statement not covered" >new FormData(this);</span>
+      const formObject = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >      formData.forEach(<span class="fstat-no" title="function not covered" >(v</span>alue, key) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        formObject[key] = value;</span>
+      });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    stats.forEach(<span class="fstat-no" title="function not covered" >st</span>at =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        statsObserver.observe(stat);</span>
+      // Simulate form submission
+      const submitBtn = <span class="cstat-no" title="statement not covered" >this.querySelector(".submit-btn");</span>
+      const originalText = <span class="cstat-no" title="statement not covered" >submitBtn.textContent;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      submitBtn.textContent = "Sending...";</span>
+<span class="cstat-no" title="statement not covered" >      submitBtn.disabled = true;</span>
+&nbsp;
+      // Simulate API call
+<span class="cstat-no" title="statement not covered" >      setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        alert("Thank you for your message! I'll get back to you soon.");</span>
+<span class="cstat-no" title="statement not covered" >        this.reset();</span>
+<span class="cstat-no" title="statement not covered" >        submitBtn.textContent = originalText;</span>
+<span class="cstat-no" title="statement not covered" >        submitBtn.disabled = false;</span>
+      }, 2000);
     });
+  }
 &nbsp;
-    // Gallery item click to enlarge (basic lightbox effect)
-<span class="cstat-no" title="statement not covered" >    galleryItems.forEach(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        item.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-            const img = <span class="cstat-no" title="statement not covered" >this.querySelector('img');</span>
-            const imgSrc = <span class="cstat-no" title="statement not covered" >img.src;</span>
-            const imgAlt = <span class="cstat-no" title="statement not covered" >img.alt;</span>
-            
-            // Create lightbox
-            const lightbox = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >            lightbox.classList.add('lightbox');</span>
-<span class="cstat-no" title="statement not covered" >            lightbox.innerHTML = `</span>
+  // Parallax effect for hero section
+<span class="cstat-no" title="statement not covered" >  window.addEventListener("scroll", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+    const scrolled = <span class="cstat-no" title="statement not covered" >window.pageYOffset;</span>
+    const hero = <span class="cstat-no" title="statement not covered" >document.querySelector(".hero");</span>
+<span class="cstat-no" title="statement not covered" >    if (hero) {</span>
+      const rate = <span class="cstat-no" title="statement not covered" >scrolled * -0.5;</span>
+<span class="cstat-no" title="statement not covered" >      hero.style.transform = `translateY(${rate}px)`;</span>
+    }
+  });
+&nbsp;
+  // Intersection Observer for animations
+  const observerOptions = <span class="cstat-no" title="statement not covered" >{</span>
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+&nbsp;
+  const observer = <span class="cstat-no" title="statement not covered" >new IntersectionObserver(<span class="fstat-no" title="function not covered" >fu</span>nction (entries) {</span>
+<span class="cstat-no" title="statement not covered" >    entries.forEach(<span class="fstat-no" title="function not covered" >(e</span>ntry) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (entry.isIntersecting) {</span>
+<span class="cstat-no" title="statement not covered" >        entry.target.style.opacity = "1";</span>
+<span class="cstat-no" title="statement not covered" >        entry.target.style.transform = "translateY(0)";</span>
+      }
+    });
+  }, observerOptions);
+&nbsp;
+  // Observe elements for scroll animations
+  const animateElements = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(</span>
+    ".featured-item, .gallery-item, .about-content, .contact-content"
+  );
+<span class="cstat-no" title="statement not covered" >  animateElements.forEach(<span class="fstat-no" title="function not covered" >(e</span>l) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    el.style.opacity = "0";</span>
+<span class="cstat-no" title="statement not covered" >    el.style.transform = "translateY(50px)";</span>
+<span class="cstat-no" title="statement not covered" >    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";</span>
+<span class="cstat-no" title="statement not covered" >    observer.observe(el);</span>
+  });
+&nbsp;
+  // Counter animation for stats
+  const stats = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(".stat-number");</span>
+  const countUp = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>lement, target) =&gt; {</span>
+    let current = <span class="cstat-no" title="statement not covered" >0;</span>
+    const increment = <span class="cstat-no" title="statement not covered" >target / 100;</span>
+    const timer = <span class="cstat-no" title="statement not covered" >setInterval(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      current += increment;</span>
+<span class="cstat-no" title="statement not covered" >      if (current &gt;= target) {</span>
+<span class="cstat-no" title="statement not covered" >        element.textContent = target;</span>
+<span class="cstat-no" title="statement not covered" >        clearInterval(timer);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        element.textContent = Math.floor(current);</span>
+      }
+    }, 20);
+  };
+&nbsp;
+  const statsObserver = <span class="cstat-no" title="statement not covered" >new IntersectionObserver(</span>
+<span class="fstat-no" title="function not covered" >    fu</span>nction (entries) {
+<span class="cstat-no" title="statement not covered" >      entries.forEach(<span class="fstat-no" title="function not covered" >(e</span>ntry) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (entry.isIntersecting) {</span>
+          const target = <span class="cstat-no" title="statement not covered" >entry.target;</span>
+          const finalValue = <span class="cstat-no" title="statement not covered" >target.textContent;</span>
+          const numericValue = <span class="cstat-no" title="statement not covered" >parseInt(finalValue.replace(/\D/g, ""));</span>
+<span class="cstat-no" title="statement not covered" >          countUp(target, numericValue);</span>
+<span class="cstat-no" title="statement not covered" >          statsObserver.unobserve(target);</span>
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  stats.forEach(<span class="fstat-no" title="function not covered" >(s</span>tat) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    statsObserver.observe(stat);</span>
+  });
+&nbsp;
+  // Gallery item click to enlarge (basic lightbox effect)
+<span class="cstat-no" title="statement not covered" >  galleryItems.forEach(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    item.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+      const img = <span class="cstat-no" title="statement not covered" >this.querySelector("img");</span>
+      const imgSrc = <span class="cstat-no" title="statement not covered" >img.src;</span>
+      const imgAlt = <span class="cstat-no" title="statement not covered" >img.alt;</span>
+&nbsp;
+      // Create lightbox
+      const lightbox = <span class="cstat-no" title="statement not covered" >document.createElement("div");</span>
+<span class="cstat-no" title="statement not covered" >      lightbox.classList.add("lightbox");</span>
+<span class="cstat-no" title="statement not covered" >      lightbox.innerHTML = `</span>
                 &lt;div class="lightbox-content"&gt;
                     &lt;span class="lightbox-close"&gt;&amp;times;&lt;/span&gt;
                     &lt;img src="${imgSrc}" alt="${imgAlt}"&gt;
                     &lt;div class="lightbox-caption"&gt;${imgAlt}&lt;/div&gt;
                 &lt;/div&gt;
             `;
-            
-<span class="cstat-no" title="statement not covered" >            document.body.appendChild(lightbox);</span>
-<span class="cstat-no" title="statement not covered" >            document.body.style.overflow = 'hidden';</span>
-            
-            // Close lightbox
-            const closeBtn = <span class="cstat-no" title="statement not covered" >lightbox.querySelector('.lightbox-close');</span>
-<span class="cstat-no" title="statement not covered" >            closeBtn.addEventListener('click', closeLightbox);</span>
-<span class="cstat-no" title="statement not covered" >            lightbox.addEventListener('click', <span class="fstat-no" title="function not covered" >fu</span>nction(e) {</span>
-<span class="cstat-no" title="statement not covered" >                if (e.target === lightbox) {</span>
-<span class="cstat-no" title="statement not covered" >                    closeLightbox();</span>
-                }
-            });
-            
-            function <span class="fstat-no" title="function not covered" >closeLightbox(</span>) {
-<span class="cstat-no" title="statement not covered" >                document.body.removeChild(lightbox);</span>
-<span class="cstat-no" title="statement not covered" >                document.body.style.overflow = 'auto';</span>
-            }
-            
-            // Close with Escape key
-<span class="cstat-no" title="statement not covered" >            document.addEventListener('keydown', <span class="fstat-no" title="function not covered" >fu</span>nction(e) {</span>
-<span class="cstat-no" title="statement not covered" >                if (e.key === 'Escape') {</span>
-<span class="cstat-no" title="statement not covered" >                    closeLightbox();</span>
-                }
-            });
-        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      document.body.appendChild(lightbox);</span>
+<span class="cstat-no" title="statement not covered" >      document.body.style.overflow = "hidden";</span>
+&nbsp;
+      // Close lightbox
+      const closeBtn = <span class="cstat-no" title="statement not covered" >lightbox.querySelector(".lightbox-close");</span>
+<span class="cstat-no" title="statement not covered" >      closeBtn.addEventListener("click", closeLightbox);</span>
+<span class="cstat-no" title="statement not covered" >      lightbox.addEventListener("click", <span class="fstat-no" title="function not covered" >fu</span>nction (e) {</span>
+<span class="cstat-no" title="statement not covered" >        if (e.target === lightbox) {</span>
+<span class="cstat-no" title="statement not covered" >          closeLightbox();</span>
+        }
+      });
+&nbsp;
+      function <span class="fstat-no" title="function not covered" >closeLightbox(</span>) {
+<span class="cstat-no" title="statement not covered" >        document.body.removeChild(lightbox);</span>
+<span class="cstat-no" title="statement not covered" >        document.body.style.overflow = "auto";</span>
+      }
+&nbsp;
+      // Close with Escape key
+<span class="cstat-no" title="statement not covered" >      document.addEventListener("keydown", <span class="fstat-no" title="function not covered" >fu</span>nction (e) {</span>
+<span class="cstat-no" title="statement not covered" >        if (e.key === "Escape") {</span>
+<span class="cstat-no" title="statement not covered" >          closeLightbox();</span>
+        }
+      });
+    });
+  });
+&nbsp;
+  // Lazy loading for images
+  const images = <span class="cstat-no" title="statement not covered" >document.querySelectorAll("img[data-src]");</span>
+  const imageObserver = <span class="cstat-no" title="statement not covered" >new IntersectionObserver(<span class="fstat-no" title="function not covered" >(e</span>ntries, observer) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    entries.forEach(<span class="fstat-no" title="function not covered" >(e</span>ntry) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (entry.isIntersecting) {</span>
+        const img = <span class="cstat-no" title="statement not covered" >entry.target;</span>
+<span class="cstat-no" title="statement not covered" >        img.src = img.dataset.src;</span>
+<span class="cstat-no" title="statement not covered" >        img.classList.remove("lazy");</span>
+<span class="cstat-no" title="statement not covered" >        imageObserver.unobserve(img);</span>
+      }
+    });
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  images.forEach(<span class="fstat-no" title="function not covered" >(i</span>mg) =&gt; <span class="cstat-no" title="statement not covered" >imageObserver.observe(img))</span>;</span>
+&nbsp;
+  // Add smooth reveal animation to section titles
+  const sectionTitles = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(".section-title");</span>
+<span class="cstat-no" title="statement not covered" >  sectionTitles.forEach(<span class="fstat-no" title="function not covered" >(t</span>itle) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    title.style.opacity = "0";</span>
+<span class="cstat-no" title="statement not covered" >    title.style.transform = "translateY(30px)";</span>
+<span class="cstat-no" title="statement not covered" >    title.style.transition = "opacity 0.8s ease, transform 0.8s ease";</span>
+<span class="cstat-no" title="statement not covered" >    observer.observe(title);</span>
+  });
+&nbsp;
+  // Featured items hover effect enhancement
+  const featuredItems = <span class="cstat-no" title="statement not covered" >document.querySelectorAll(".featured-item");</span>
+<span class="cstat-no" title="statement not covered" >  featuredItems.forEach(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    item.addEventListener("mouseenter", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >      this.style.zIndex = "10";</span>
     });
 &nbsp;
-    // Lazy loading for images
-    const images = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('img[data-src]');</span>
-    const imageObserver = <span class="cstat-no" title="statement not covered" >new IntersectionObserver(<span class="fstat-no" title="function not covered" >(e</span>ntries, observer) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        entries.forEach(<span class="fstat-no" title="function not covered" >en</span>try =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            if (entry.isIntersecting) {</span>
-                const img = <span class="cstat-no" title="statement not covered" >entry.target;</span>
-<span class="cstat-no" title="statement not covered" >                img.src = img.dataset.src;</span>
-<span class="cstat-no" title="statement not covered" >                img.classList.remove('lazy');</span>
-<span class="cstat-no" title="statement not covered" >                imageObserver.unobserve(img);</span>
-            }
-        });
+<span class="cstat-no" title="statement not covered" >    item.addEventListener("mouseleave", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >      this.style.zIndex = "1";</span>
     });
+  });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    images.forEach(<span class="fstat-no" title="function not covered" >im</span>g =&gt; <span class="cstat-no" title="statement not covered" >imageObserver.observe(img))</span>;</span>
+  // Add scroll progress indicator
+  const scrollProgress = <span class="cstat-no" title="statement not covered" >document.createElement("div");</span>
+<span class="cstat-no" title="statement not covered" >  scrollProgress.classList.add("scroll-progress");</span>
+<span class="cstat-no" title="statement not covered" >  document.body.appendChild(scrollProgress);</span>
 &nbsp;
-    // Add smooth reveal animation to section titles
-    const sectionTitles = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.section-title');</span>
-<span class="cstat-no" title="statement not covered" >    sectionTitles.forEach(<span class="fstat-no" title="function not covered" >ti</span>tle =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        title.style.opacity = '0';</span>
-<span class="cstat-no" title="statement not covered" >        title.style.transform = 'translateY(30px)';</span>
-<span class="cstat-no" title="statement not covered" >        title.style.transition = 'opacity 0.8s ease, transform 0.8s ease';</span>
-<span class="cstat-no" title="statement not covered" >        observer.observe(title);</span>
-    });
-&nbsp;
-    // Featured items hover effect enhancement
-    const featuredItems = <span class="cstat-no" title="statement not covered" >document.querySelectorAll('.featured-item');</span>
-<span class="cstat-no" title="statement not covered" >    featuredItems.forEach(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        item.addEventListener('mouseenter', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-<span class="cstat-no" title="statement not covered" >            this.style.zIndex = '10';</span>
-        });
-        
-<span class="cstat-no" title="statement not covered" >        item.addEventListener('mouseleave', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-<span class="cstat-no" title="statement not covered" >            this.style.zIndex = '1';</span>
-        });
-    });
-&nbsp;
-    // Add scroll progress indicator
-    const scrollProgress = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >    scrollProgress.classList.add('scroll-progress');</span>
-<span class="cstat-no" title="statement not covered" >    document.body.appendChild(scrollProgress);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    window.addEventListener('scroll', <span class="fstat-no" title="function not covered" >fu</span>nction() {</span>
-        const scrollTotal = <span class="cstat-no" title="statement not covered" >document.documentElement.scrollHeight - window.innerHeight;</span>
-        const scrollCurrent = <span class="cstat-no" title="statement not covered" >window.pageYOffset;</span>
-        const scrollPercentage = <span class="cstat-no" title="statement not covered" >(scrollCurrent / scrollTotal) * 100;</span>
-<span class="cstat-no" title="statement not covered" >        scrollProgress.style.width = scrollPercentage + '%';</span>
-    });
+<span class="cstat-no" title="statement not covered" >  window.addEventListener("scroll", <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+    const scrollTotal =
+<span class="cstat-no" title="statement not covered" >      document.documentElement.scrollHeight - window.innerHeight;</span>
+    const scrollCurrent = <span class="cstat-no" title="statement not covered" >window.pageYOffset;</span>
+    const scrollPercentage = <span class="cstat-no" title="statement not covered" >(scrollCurrent / scrollTotal) * 100;</span>
+<span class="cstat-no" title="statement not covered" >    scrollProgress.style.width = scrollPercentage + "%";</span>
+  });
 });
 &nbsp;
 // Add CSS for lightbox and scroll progress
@@ -1114,16 +1131,17 @@ const additionalStyles = <span class="cstat-no" title="statement not covered" >`
 `;
 &nbsp;
 // Inject additional styles
-const styleSheet = <span class="cstat-no" title="statement not covered" >document.createElement('style');</span>
+const styleSheet = <span class="cstat-no" title="statement not covered" >document.createElement("style");</span>
 <span class="cstat-no" title="statement not covered" >styleSheet.textContent = additionalStyles;</span>
-<span class="cstat-no" title="statement not covered" >document.head.appendChild(styleSheet); </span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >document.head.appendChild(styleSheet);</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-07-16T22:31:17.969Z
+                at 2026-01-06T21:45:49.587Z
             </div>
         <script src="prettify.js"></script>
         <script>

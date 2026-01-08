@@ -16,14 +16,11 @@ describe('Flaky Memory and State Pollution Tests', () => {
         <div class="event-target"></div>
       </div>
     `;
-    
-    // Intentionally NOT resetting shared state to create MORE pollution
-    // globalCounter = 0;  // COMMENTED OUT - causes state pollution
-    // sharedCache = {};   // COMMENTED OUT - causes state pollution
-    
-    // Actually increment counter to guarantee pollution
-    globalCounter += Math.floor(Math.random() * 5) + 1; // Add 1-5 to counter each time
-    sharedCache[`pollution-${Date.now()}`] = 'polluted data'; // Add random cache entries
+
+    // Reset shared state to prevent pollution
+    globalCounter = 0;
+    sharedCache = {};
+    eventListeners = [];
   });
 
   // FLAKY TEST 25: Shared counter state pollution
@@ -131,32 +128,34 @@ describe('Flaky Memory and State Pollution Tests', () => {
   });
 
   // FLAKY TEST 30: Timer pollution
-  test('should handle timers correctly (FLAKY: timer pollution)', (done) => {
+  test('should handle timers correctly (FLAKY: timer pollution)', () => {
+    jest.useFakeTimers();
     let timerCount = 0;
-    
-    // Mock timer that might not be cleaned up
+    let intervalId = null;
+
+    // Mock timer with proper cleanup tracking
     const mockStartTimer = () => {
-      const interval = setInterval(() => {
+      intervalId = setInterval(() => {
         timerCount++;
       }, 50);
-      
-      // Store interval but don't always clean it up
-      if (Math.random() > 0.5) {
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 200);
-      }
-      // 50% chance timer keeps running - causes pollution
+
+      return intervalId;
     };
 
     mockStartTimer();
-    
-    setTimeout(() => {
-      // Timer count depends on whether previous test timers are still running
-      expect(timerCount).toBe(4); // FLAKY: might be higher if previous timers still running
-      expect(timerCount).toBeGreaterThan(0);
-      done();
-    }, 250);
+
+    // Advance timers by 250ms
+    jest.advanceTimersByTime(250);
+
+    // With 50ms intervals over 250ms, we expect exactly 5 ticks (0ms, 50ms, 100ms, 150ms, 200ms, 250ms)
+    expect(timerCount).toBe(5);
+    expect(timerCount).toBeGreaterThan(0);
+
+    // Cleanup
+    if (intervalId !== null) {
+      clearInterval(intervalId);
+    }
+    jest.useRealTimers();
   });
 
   // FLAKY TEST 31: Module state pollution

@@ -39,4 +39,14 @@ beforeEach(() => {
   
   // Clear all mocks
   jest.clearAllMocks();
-}); 
+});
+
+afterEach(() => {
+  try { localStorage.clear(); } catch {}
+  document.body.className = '';
+  jest.clearAllTimers();
+  jest.useRealTimers();
+  delete window.testGlobal;
+  delete window.userPreferences;
+  delete global.debugMode;
+});

@@ -16,14 +16,19 @@ describe('Flaky Memory and State Pollution Tests', () => {
         <div class="event-target"></div>
       </div>
     `;
-    
-    // Intentionally NOT resetting shared state to create MORE pollution
-    // globalCounter = 0;  // COMMENTED OUT - causes state pollution
-    // sharedCache = {};   // COMMENTED OUT - causes state pollution
-    
-    // Actually increment counter to guarantee pollution
-    globalCounter += Math.floor(Math.random() * 5) + 1; // Add 1-5 to counter each time
-    sharedCache[`pollution-${Date.now()}`] = 'polluted data'; // Add random cache entries
+
+    // Reset shared state to avoid cross-test pollution
+    globalCounter = 0;
+    sharedCache = {};
+    eventListeners = [];
+  });
+
+  afterEach(() => {
+    // Remove any event listeners registered during tests
+    eventListeners.forEach(({ element, type, handler }) => {
+      try { element.removeEventListener(type, handler); } catch {}
+    });
+    eventListeners = [];
   });
 
   // FLAKY TEST 25: Shared counter state pollution
@@ -130,33 +135,28 @@ describe('Flaky Memory and State Pollution Tests', () => {
     // Intentionally NOT cleaning up globals
   });
 
-  // FLAKY TEST 30: Timer pollution
-  test('should handle timers correctly (FLAKY: timer pollution)', (done) => {
-    let timerCount = 0;
-    
-    // Mock timer that might not be cleaned up
-    const mockStartTimer = () => {
-      const interval = setInterval(() => {
-        timerCount++;
-      }, 50);
-      
-      // Store interval but don't always clean it up
-      if (Math.random() > 0.5) {
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 200);
-      }
-      // 50% chance timer keeps running - causes pollution
-    };
+  // FLAKY TEST 30: Timer pollution (fixed to deterministic timers)
+  test('should handle timers correctly (FLAKY: timer pollution)', () => {
+    jest.useFakeTimers();
 
-    mockStartTimer();
-    
-    setTimeout(() => {
-      // Timer count depends on whether previous test timers are still running
-      expect(timerCount).toBe(4); // FLAKY: might be higher if previous timers still running
-      expect(timerCount).toBeGreaterThan(0);
-      done();
-    }, 250);
+    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.5);
+
+    let timerCount = 0;
+
+    const interval = setInterval(() => {
+      timerCount++;
+    }, 50);
+
+    // Drive virtual time deterministically
+    jest.advanceTimersByTime(200);
+    clearInterval(interval);
+
+    expect(timerCount).toBe(4);
+    expect(timerCount).toBeGreaterThan(0);
+
+    randomSpy.mockRestore();
+    jest.clearAllTimers();
+    jest.useRealTimers();
   });
 
   // FLAKY TEST 31: Module state pollution

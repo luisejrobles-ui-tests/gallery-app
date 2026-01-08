@@ -182,13 +182,16 @@ describe('Flaky Randomness-Based Tests', () => {
   });
 
   // TEST 17: Random delay simulation made deterministic with fake timers
-  test('should handle random delays (FLAKY: delay timing)', (done) => {
+  test('should handle random delays (FLAKY: delay timing)', () => {
     jest.useFakeTimers();
     jest.setSystemTime(new Date('2021-01-01T10:00:00Z'));
 
     let operationCompleted = false;
     const startTime = Date.now();
-    
+
+    // Stub Math.random to return deterministic value (0.5 -> 200ms delay)
+    const randSpy = jest.spyOn(Math, 'random').mockReturnValue(0.5);
+
     const mockRandomDelayOperation = () => {
       const delay = Math.random() * 200 + 100; // 100-300ms
       setTimeout(() => {
@@ -197,17 +200,15 @@ describe('Flaky Randomness-Based Tests', () => {
     };
 
     mockRandomDelayOperation();
-    
-    setTimeout(() => {
-      const elapsedTime = Date.now() - startTime;
-      
-      expect(operationCompleted).toBe(true);
-      expect(elapsedTime).toBeGreaterThanOrEqual(100);
-      jest.useRealTimers();
-      done();
-    }, 300);
 
-    jest.advanceTimersByTime(300);
+    // Advance timers to trigger the operation timeout (200ms)
+    jest.advanceTimersByTime(200);
+
+    expect(operationCompleted).toBe(true);
+    expect(Date.now() - startTime).toBe(200);
+
+    randSpy.mockRestore();
+    jest.useRealTimers();
   });
 
   // TEST 18: Weighted random selection driven by deterministic sequence

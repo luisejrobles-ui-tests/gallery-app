@@ -42,9 +42,20 @@ Mountaineering photographers and adventure enthusiasts need a professional way t
 
 ```
 gallery-app/
+├── .circleci/          # CircleCI configuration for continuous integration
+├── .github/            # GitHub configuration files
+├── tests/              # Test suites (Jest)
+│   ├── animations.test.js
+│   ├── form.test.js
+│   ├── gallery.test.js
+│   ├── integration.test.js
+│   ├── navigation.test.js
+│   └── flaky-*.test.js # Flaky test suites (excluded from CI)
 ├── index.html          # Main HTML structure
 ├── styles.css          # All CSS styling and responsive design
 ├── script.js           # JavaScript functionality and interactions
+├── jest.config.js      # Jest testing configuration
+├── package.json        # Project dependencies and scripts
 └── README.md          # This documentation file
 ```
 
@@ -115,6 +126,62 @@ The site is responsive with breakpoints at:
 
 Customize breakpoints in the media queries section of `styles.css`.
 
+## Development & Testing
+
+### **Prerequisites**
+- Node.js (v14 or higher)
+- npm or yarn package manager
+
+### **Installation**
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+# or
+yarn install
+```
+
+### **Running Tests**
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Generate coverage report
+npm run test:coverage
+
+# Run flaky tests separately
+npm run test:flaky
+```
+
+### **Test Suites**
+The project includes comprehensive test coverage:
+- **animations.test.js**: Tests for scroll animations and visual effects
+- **form.test.js**: Contact form validation and submission tests
+- **gallery.test.js**: Gallery filtering and image display tests
+- **navigation.test.js**: Mobile navigation and menu tests
+- **integration.test.js**: End-to-end feature integration tests
+- **flaky-*.test.js**: Flaky test suites (excluded from CI pipeline)
+
+### **Local Development**
+```bash
+# Start local server
+npm run serve
+
+# Then open http://localhost:8000 in your browser
+```
+
+### **Continuous Integration**
+The project uses CircleCI for automated testing:
+- Tests run automatically on every push
+- Flaky tests are excluded from CI pipeline
+- Test results stored as artifacts
+- Configuration in `.circleci/config.yml`
+
 ## Browser Support
 
 - **Modern browsers**: Chrome, Firefox, Safari, Edge (last 2 versions)
@@ -179,12 +246,43 @@ The current form is frontend-only. To make it functional:
 - Reduce motion for accessibility (prefers-reduced-motion)
 - Optimize large images that might cause lag
 
+## Contributing
+
+Contributions are welcome! To contribute:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes and add tests
+4. Run the test suite to ensure everything passes
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+### **Code Quality**
+- All code is formatted with Prettier
+- ESLint is configured for code linting
+- Tests must pass before merging
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 ## Support
 
 For issues or questions about customizing this template:
 1. Check browser console for JavaScript errors
 2. Validate HTML and CSS syntax
 3. Test on different devices and browsers
+4. Review the test suites for usage examples
+
+## Author
+
+**Luis Robles**
+
+## Acknowledgments
+
+- Mountain photography community for inspiration
+- Unsplash for placeholder images
+- Modern CSS and JavaScript best practices
 
 ---
 
